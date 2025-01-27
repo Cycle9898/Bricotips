@@ -1,4 +1,4 @@
-/* Global CSS */
+/* GLOBAL */
 
 /* Roboto font */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
@@ -43,4 +43,13 @@ li.menu-item.current-menu-item a {
 	color: #f4ca52 !important;
 	background-color: #313332;
 	text-decoration: none !important;
+}
+
+/* FOOTER */
+
+#site-footer {
+	padding: 20px;
+	text-align: center;
+	color: #6d6d6d;
+	background-color: #c8d6cf !important;
 }

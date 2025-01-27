@@ -1,0 +1,37 @@
+/* Image_Title_Widget */
+
+.widget_image_title_widget {
+	text-align: center;
+}
+
+.image-title-widget {
+	display: inline-block;
+	position: relative;
+	text-align: center;
+}
+.image-title-widget img {
+	width: 250px;
+	height: 250px;
+	object-fit: cover;
+}
+.image-title-widget .title {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 40px;
+	padding: 15px;
+	color: white;
+	opacity: 0;
+	background-color: rgba(244, 202, 82, 0.8);
+	transition: all 0.33s ease-in-out;
+}
+.image-title-widget:hover .title {
+	opacity: 1;
+	transition: all 0.33s ease-in-out;
+}
