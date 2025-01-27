@@ -47,6 +47,10 @@ li.menu-item.current-menu-item a {
 
 /* FOOTER */
 
+.footer-nav-widgets-wrapper {
+	background-color: #c8d6cf !important;
+}
+
 #site-footer {
 	padding: 20px;
 	text-align: center;

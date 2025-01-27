@@ -1,0 +1,32 @@
+/* Image_Link_Block_Widget style */
+
+.image-link-block-widget {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	text-decoration: none;
+	background-position: center center;
+	background-size: cover;
+}
+.image-link-block-widget:before {
+	content: "";
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: black;
+	opacity: 0.5;
+}
+.image-link-block-widget .title {
+	position: relative;
+	z-index: 2;
+	margin: 0;
+	padding: 10px 20px;
+	text-align: center;
+	color: white;
+	font-size: 25px;
+}
