@@ -9,6 +9,8 @@ function theme_enqueue_styles()
     wp_enqueue_style('theme-style', get_stylesheet_directory_uri() . '/CSS/theme.css', array(), filemtime(get_stylesheet_directory() . '/CSS/theme.css'));
     // load widget(s) style
     wp_enqueue_style('image-title-widget', get_stylesheet_directory_uri() . '/CSS/widgets/image-title-widget.css', array(), filemtime(get_stylesheet_directory() . '/CSS/widgets/image-title-widget.css'));
+    // load shortcode(s) style
+    wp_enqueue_style('banner-title-shortcode', get_stylesheet_directory_uri() . '/CSS/shortcodes/banner-title.css', array(), filemtime(get_stylesheet_directory() . '/CSS/shortcodes/banner-title.css'));
 }
 
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
@@ -24,3 +26,34 @@ function register_widgets()
 }
 
 add_action('widgets_init', 'register_widgets');
+
+/* Shortcodes */
+
+// Image_banner shortcode
+function banner_title_func($atts)
+{
+    // get attributes
+    $atts = shortcode_atts(array(
+        'src' => '',
+        'title' => 'Titre'
+    ), $atts, 'banner-title');
+
+    // convert into text and return result
+    ob_start();
+
+    if ($atts['src'] != "") {
+?>
+
+        <div class="banner-title" style="background-image: url(<?= $atts['src'] ?>)">
+            <h2 class="title"><?= $atts['title'] ?></h2>
+        </div>
+
+<?php
+    }
+    $output = ob_get_contents();
+    ob_end_clean();
+
+    return $output;
+}
+
+add_shortcode('banner-title', 'banner_title_func');
