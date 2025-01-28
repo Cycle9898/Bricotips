@@ -57,3 +57,43 @@ li.menu-item.current-menu-item a {
 	color: #6d6d6d;
 	background-color: #c8d6cf !important;
 }
+
+/* About Page */
+
+#about h1 {
+	text-align: center;
+	font-size: 40px;
+}
+#about > section {
+	max-width: 1200px;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 0 20px;
+}
+#about > section h2 {
+	width: 100%;
+	padding: 0 15px;
+	font-size: 30px;
+}
+#about > section .image {
+	width: 300px;
+	padding: 0 15px;
+}
+#about > section .image img {
+	width: 100%;
+}
+#about > section .text {
+	flex: 1;
+}
+@media (max-width: 768px) {
+	#about > section > * {
+		width: 100%;
+		flex: initial !important;
+	}
+	#about > section .image {
+		order: 2;
+	}
+}
