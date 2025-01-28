@@ -97,3 +97,61 @@ li.menu-item.current-menu-item a {
 		order: 2;
 	}
 }
+
+/* Lexicon Page */
+
+#lexicon h1 {
+	text-align: center;
+	font-size: 40px;
+}
+
+#lexicon > section {
+	max-width: 1200px;
+	margin: auto;
+}
+
+#lexicon .word {
+	border: 1px solid grey;
+	border-radius: 20px;
+	margin: 0 20px 20px 20px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+#lexicon .word .down {
+	display: inline-block;
+}
+
+#lexicon .word .up {
+	display: none;
+}
+
+#lexicon .word.open .down {
+	display: none;
+}
+
+#lexicon .word.open .up {
+	display: inline-block;
+}
+
+#lexicon .word .title {
+	padding: 10px 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background: #c8d6cf;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#lexicon .word .definition {
+	padding: 10px 20px;
+	display: none;
+}
+
+#lexicon .word.open .definition {
+	padding: 10px 20px;
+	display: block;
+	background: #f4ca52;
+}
