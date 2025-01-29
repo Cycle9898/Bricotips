@@ -62,3 +62,58 @@ function banner_title_func($atts)
 }
 
 add_shortcode('banner-title', 'banner_title_func');
+
+/* #Hooks */
+
+/* Filter hooks */
+
+function filter_tool_article_titles($title)
+{
+    if (is_single() && in_category('Outils') && in_the_loop()) {
+        return 'Outil: ' . $title;
+    }
+
+    return $title;
+}
+
+add_filter('the_title', 'filter_tool_article_titles');
+
+function filter_archive_title($title)
+{
+    if (is_category()) {
+        return 'Liste des ' . strtolower(single_cat_title('', false));
+    }
+
+    return $title;
+}
+
+add_filter('get_the_archive_title', 'filter_archive_title');
+
+function filter_archive_categories_link($categories)
+{
+    return str_replace('Outils', 'Tous les outils', $categories);
+}
+
+add_filter('the_category', 'filter_archive_categories_link');
+
+function filter_tool_page_content($content)
+{
+    if (is_single() && in_category('Outils')) {
+        return '<hr><h2>Description</h2>' . $content;
+    }
+
+    return $content;
+}
+
+add_filter('the_content', 'filter_tool_page_content');
+
+function filter_archive_excerpt($content)
+{
+    if (is_archive()) {
+        return $content . "<div class='more-excerpt'><a href='" . get_the_permalink() . "'>En savoir plus sur l'outil</a></div>";
+    }
+
+    return $content;
+}
+
+add_filter('the_excerpt', 'filter_archive_excerpt');
