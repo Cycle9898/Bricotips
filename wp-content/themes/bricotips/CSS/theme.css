@@ -158,6 +158,10 @@ li.menu-item.current-menu-item a {
 
 /* Archive Page */
 
+.archive-intro {
+	margin-bottom: 3rem;
+}
+
 .more-excerpt {
 	text-align: center;
 }
@@ -173,4 +177,8 @@ li.menu-item.current-menu-item a {
 .more-excerpt a:hover {
 	color: #f4ca52;
 	background-color: #313332;
+}
+
+.after-loop {
+	margin-top: 8rem;
 }

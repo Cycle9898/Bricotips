@@ -53,7 +53,7 @@ function banner_title_func($atts)
             <h2 class="title"><?= $atts['title'] ?></h2>
         </div>
 
-<?php
+    <?php
     }
     $output = ob_get_contents();
     ob_end_clean();
@@ -67,6 +67,7 @@ add_shortcode('banner-title', 'banner_title_func');
 
 /* Filter hooks */
 
+// add a prefix on tool posts main titles
 function filter_tool_article_titles($title)
 {
     if (is_single() && in_category('Outils') && in_the_loop()) {
@@ -78,6 +79,7 @@ function filter_tool_article_titles($title)
 
 add_filter('the_title', 'filter_tool_article_titles');
 
+// add a prefix on archive main title
 function filter_archive_title($title)
 {
     if (is_category()) {
@@ -89,6 +91,7 @@ function filter_archive_title($title)
 
 add_filter('get_the_archive_title', 'filter_archive_title');
 
+// modify tool category link in archive page
 function filter_archive_categories_link($categories)
 {
     return str_replace('Outils', 'Tous les outils', $categories);
@@ -96,6 +99,7 @@ function filter_archive_categories_link($categories)
 
 add_filter('the_category', 'filter_archive_categories_link');
 
+// add a title for tool description in tool pages
 function filter_tool_page_content($content)
 {
     if (is_single() && in_category('Outils')) {
@@ -107,6 +111,7 @@ function filter_tool_page_content($content)
 
 add_filter('the_content', 'filter_tool_page_content');
 
+// add a more visual link, as a button, below all tool posts
 function filter_archive_excerpt($content)
 {
     if (is_archive()) {
@@ -117,3 +122,36 @@ function filter_archive_excerpt($content)
 }
 
 add_filter('the_excerpt', 'filter_archive_excerpt');
+
+/* Action hooks */
+
+// add banner-title shortcode below the Loop end of archive page
+function action_add_title_banner_end_loop()
+{
+    if (is_archive()) : ?>
+        <div class="after-loop">
+            <?= do_shortcode("[banner-title title='BricoTips' src='/wp-content/uploads/2025/01/banniere-image.webp']"); ?>
+        </div>
+    <?php
+
+    endif;
+}
+
+add_action('loop_end', 'action_add_title_banner_end_loop');
+
+// add an introduction text before the first post title on archive page
+$displayIntro = true;
+
+function action_add_intro_before_posts()
+{
+    global $displayIntro;
+
+    if (is_archive() && $displayIntro) : ?>
+        <p class="archive-intro">Vous trouverez dans cette page la liste de tous les outils que nous avons référencés pour le
+            moment. La liste n'est pas exhaustive, mais s'enrichira au fur et à mesure.</p>
+<?php
+        $displayIntro = false;
+    endif;
+}
+
+add_action('bricotips_archive_intro', 'action_add_intro_before_posts');
