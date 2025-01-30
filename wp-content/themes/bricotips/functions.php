@@ -123,6 +123,30 @@ function filter_archive_excerpt($content)
 
 add_filter('the_excerpt', 'filter_archive_excerpt');
 
+// add a more visual text before pagination links
+function filter_paginate_links($pagingHtml)
+{
+    //get position and length of a specific HTML portion, based on the current page,
+    //to easily add, only once, the desired text before pagination links
+    $firstAriaAttribute = '<span aria-current="page"';
+    $firstAriaAttributePos = intval(strpos($pagingHtml, $firstAriaAttribute));
+    $firstAriaAttributeLen = strlen($firstAriaAttribute);
+
+    $firstClassAttribute = '<a class="page-numbers" href';
+    $firstClassAttributePos = intval(strpos($pagingHtml, $firstClassAttribute));
+    $firstClassAttributeLen = strlen($firstClassAttribute);
+
+    if ($firstAriaAttributePos < $firstClassAttributePos) {
+        $pagingHtml = substr_replace($pagingHtml, '<span>Pages: </span><span aria-current="page"', $firstAriaAttributePos, $firstAriaAttributeLen);
+    } else {
+        $pagingHtml = substr_replace($pagingHtml, '<span>Pages: </span><a class="page-numbers" href', $firstClassAttributePos, $firstClassAttributeLen);
+    }
+
+    return $pagingHtml;
+}
+
+add_filter('paginate_links_output', 'filter_paginate_links');
+
 /* Action hooks */
 
 // add banner-title shortcode below the Loop end of archive page
