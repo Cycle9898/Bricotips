@@ -179,3 +179,13 @@ function action_add_intro_before_posts()
 }
 
 add_action('bricotips_archive_intro', 'action_add_intro_before_posts');
+
+// uncomment add_action line to activate a basic maintenance mode with only admin access
+function action_maintenance_mode()
+{
+    if (!current_user_can('administrator')) {
+        die(include_once(__DIR__ . "/maintenance.php"));
+    }
+}
+
+//add_action('get_header', 'action_maintenance_mode');
